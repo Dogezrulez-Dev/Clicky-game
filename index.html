@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Clicker Game</title>
+    
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="body">
+        <h1 id="head">Clicker Game </h1>
+        <h3>Acheivements</h3>
+        <p id="aone"></p>
+        <p id="atwo"></p>
+        <button onclick="clickadd()">CLICK HERE</button>
+        <p id="number"></p> 
+        <div id="shopa">
+            <p>Extra click</p>
+            <button onclick="shopaadd()">BUY COST 30</button>
+        </div>
+        <div id="shopb">
+            <p>Extra click x3</p>
+            <button onclick="shopbadd()">BUY COST 75</button>
+        </div>
+
+    </div>
+</body>
+
+</html>
+<script>
+    var shopadis = document.getElementById("shopa");
+    var shopbdis = document.getElementById("shopb");
+    var number = 0;
+    var addup = 1;
+    var addupaddupa = 1;
+    var addupaddupb = 3
+    var shopa = 30;
+    var shopb = 75
+    var aoneone =  "Why are you sill playing? *Reach 1000 Points";
+    var atwotwo = "Are you kidding me, I would've quit this at the first 2 seconds!!! *Reach 10000 Points"
+    function shopaadd(e) {
+        if (number < shopa){
+        e.preventDefault;
+    }
+        number = number - shopa;
+        addup = addup + addupaddupa;
+        document.getElementById("number").innerHTML = number;
+    }
+    function shopbadd(a) {
+        if (number < shopb){
+        a.preventDefault;
+    }
+        number = number - shopb;
+        addup = addup + addupaddupb;
+        document.getElementById("number").innerHTML = number;
+    }
+    function clickadd() {
+        if (number > 1000) {
+            document.getElementById("aone").innerHTML = aoneone;
+    }
+        if (number > 10000) {
+            document.getElementById("atwo").innerHTML = atwotwo;
+    }
+        number = number + addup;
+        document.getElementById("number").innerHTML = number;
+    }
+
+
+    
+    
+</script>
+<style>
+    
+</style>

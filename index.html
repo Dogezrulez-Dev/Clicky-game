@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -10,18 +11,22 @@
 <body>
     <div id="body">
         <h1 id="head">Clicker Game </h1>
-        <h3>Achievements</h3>
-        <p id="aone"></p>
-        <p id="atwo"></p>
+        <h3 onclick="speller()" id="ah">Acheivements</h3>
+        <p id="aone">Unknown</p>
+        <p id="atwo">Unknown</p>
+        <p id="athree">Unknown</p>
+        <p id="afour">Unknown</p>
+        <hr>
         <button onclick="clickadd()">CLICK HERE</button>
+        <p>Points</p>
         <p id="number"></p> 
         <div id="shopa">
             <p>Extra click</p>
-            <button onclick="shopaadd()">BUY COST 30</button>
+            <button onclick="shopaadd()" id="ec" >BUY COST 30</button>
         </div>
         <div id="shopb">
             <p>Extra click x3</p>
-            <button onclick="shopbadd()">BUY COST 75</button>
+            <button onclick="shopbadd()" id="ecthree" >BUY COST 75</button>
         </div>
 
     </div>
@@ -36,16 +41,31 @@
     var addupaddupa = 1;
     var addupaddupb = 3
     var shopa = 30;
-    var shopb = 75
+    var shopb = 75;
+    var shopadda = 15;
+    var shopaddb = 20;
+    var spell = "Achievements";
+    var no = "";
+    var secretspell = "You're a great speller! *Click the misspelled header";
+    var b = "BUY COST ";
+    var athreethree = "Im going to be silent now, you're already in the millions! *Reach 1000000 Points";
     var aoneone =  "Why are you sill playing? *Reach 1000 Points";
     var atwotwo = "Are you kidding me, I would've quit this at the first 2 seconds!!! *Reach 10000 Points"
+    document.getElementById("number").innerHTML = number;
+    function speller() {
+        document.getElementById("ah").innerHTML = spell;
+        document.getElementById("afour").innerHTML = secretspell;
+    }
     function shopaadd(e) {
         if (number < shopa){
         e.preventDefault;
     }
         number = number - shopa;
         addup = addup + addupaddupa;
+        shopa = shopa + shopadda;
         document.getElementById("number").innerHTML = number;
+        document.getElementById("ec").innerHTML = no;
+        document.getElementById("ec").innerHTML = b + shopa;
     }
     function shopbadd(a) {
         if (number < shopb){
@@ -53,7 +73,10 @@
     }
         number = number - shopb;
         addup = addup + addupaddupb;
+        shopb = shopb + shopaddb;
         document.getElementById("number").innerHTML = number;
+        document.getElementById("ecthree").innerHTML = no;
+        document.getElementById("ecthree").innerHTML = b + shopb;
     }
     function clickadd() {
         if (number > 1000) {
@@ -61,6 +84,9 @@
     }
         if (number > 10000) {
             document.getElementById("atwo").innerHTML = atwotwo;
+    }
+    if (number > 1000000) {
+            document.getElementById("athree").innerHTML = athreethree;
     }
         number = number + addup;
         document.getElementById("number").innerHTML = number;
@@ -71,5 +97,7 @@
     
 </script>
 <style>
-    
+    #body{
+        font-family: sans-serif;
+    }
 </style>

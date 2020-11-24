@@ -1,103 +1,172 @@
-
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>Clicker Game</title>
-    
-    <link href="style.css" rel="stylesheet" type="text/css">
-</head>
+    <head>
+        <title>Clicker Game</title>
+    </head>
+    <body>
+        <div id="body" ondragover="onDragOver(event)">
+            <h1 id="head" onclick="ttlcl">Clicker Game </h1>
+            <h3 onclick="speller()" id="ah">Acheivements	★</h3>
+            <p id="aone"></p>
+            <p id="atwo"></p>
+            <p id="athree"></p>
+            <p id="afour" onclick="spellerx()"></p>
+            <p id="afive"></p>
+            <p id="asix"></p>
+            <p id="aseven"></p>
+            <hr>
+            <br>            
+            <button id="btt"onclick="clickadd()">CLICK HERE</button>
+            <p id="addup"></p>
+            <p id="number"></p> 
+            <div id="shop" >
+                <h3 draggable="true" id="htre"ondragstart="onDragStart()"
+                >Shop</h3>
+                <div id="shopa">
+                    <p>Extra click</p>
+                    <button onclick="shopaadd()" id="ec" >BUY COST 30</button>
+                </div>
+                <div id="shopb">
+                    <p>Extra click x3</p>
+                    <button onclick="shopbadd()" id="ecthree" >BUY COST 75</button>
+                </div>
+                <div id="shopc">
+                    <p>Double click</p>
+                    <button onclick="shopcadd()" id="dc">BUY COST 1000</button>
+                </div>
+                
+            </div>    
 
-<body>
-    <div id="body">
-        <h1 id="head">Clicker Game </h1>
-        <h3 onclick="speller()" id="ah">Acheivements</h3>
-        <p id="aone">Unknown</p>
-        <p id="atwo">Unknown</p>
-        <p id="athree">Unknown</p>
-        <p id="afour">Unknown</p>
-        <hr>
-        <button onclick="clickadd()">CLICK HERE</button>
-        <p>Points</p>
-        <p id="number"></p> 
-        <div id="shopa">
-            <p>Extra click</p>
-            <button onclick="shopaadd()" id="ec" >BUY COST 30</button>
         </div>
-        <div id="shopb">
-            <p>Extra click x3</p>
-            <button onclick="shopbadd()" id="ecthree" >BUY COST 75</button>
-        </div>
+    </body>
+    <script>
+        var shopadis = document.getElementById("shopa");
+        var shopbdis = document.getElementById("shopb");
+        var shopcdis = document.getElementById("shopc");
+        var number = 0;
+        var addup = 1;
+        var addupaddupa = 1;
+        var addupaddupb = 3;
+        var shopa = 30;
+        var shopb = 75;
+        var shopc = 1000;
+        var shopadda = 15;
+        var shopaddb = 20;
+        var shopaddc = 1000;
+        var stopper = 0;
+        var addtxt = "Point(s) per click : "
+        var spell = "Achievements	★";
+        var secretspellx = "You're very close attention to detail huh? *Click the misspelled achievement"
+        var spellx = "You're a great speller! *Click the misspelled header";
+        var no = "";
+        var secretspell = "You're a great speller! *Click the misslpelled header";
+        var b = "BUY COST ";
+        var afivefive = "Why do you keep upgrading this? *Point cost for Extra click is over 100 Points";
+        var athreethree = "Im going to be silent now, you're already in the millions! *Reach 1000000 Points";
+        var aoneone =  "Why are you sill playing? *Reach 1000 Points";
+        var atwotwo = "Are you kidding me, I would've quit this at the first 2 seconds!!! *Reach 10000 Points"
+        document.getElementById("number").innerHTML = number;
+        document.getElementById("addup").innerHTML = addtxt + addup;
+        function onDragOver(event) {
+            event.preventDefault();
+        }
+        
+        function onDragStart(event) {
+            event.dataTransfer.setData('text/plain', event.target.id);
+            event.currentTarget
+        }
+        function onDrop(event) {
+            const id = event
+            .dataTransfer
+            .getData('text');
+            const draggableElement = document.getElementById("htre");
+            const dropzone = event.target;
+            dropzone.appendChild(draggableElement);
+            event.dataTransfer.clearData();
+        }
+        function speller() {
+            document.getElementById("ah").innerHTML = spell;
+            document.getElementById("afour").innerHTML = secretspell;
+            
+        }
+        function spellerx() {
+            document.getElementById("afour").innerHTML = spellx;
+            document.getElementById("asix").innerHTML = secretspellx;
+        }
+        function shopaadd(e) {
+            if (number < shopa){
+            e.preventDefault;
+            }
+            number = number - shopa;
+            addup = addup + addupaddupa;
+            shopa = shopa + shopadda;
+            if (shopa > 100) {
+            document.getElementById("afive").innerHTML = afivefive;
+            }
+            document.getElementById("number").innerHTML = number;
+            document.getElementById("ec").innerHTML = no;
+            document.getElementById("ec").innerHTML = b + shopa;
+            document.getElementById("addup").innerHTML = addtxt + addup;
+        }
+        function shopbadd(a) {
+            if (number < shopb){
+            a.preventDefault;
+            }
+            number = number - shopb;    
+            addup = addup + addupaddupb;
+            shopb = shopb + shopaddb;
+            document.getElementById("number").innerHTML = number;
+            document.getElementById("ecthree").innerHTML = no;
+            document.getElementById("ecthree").innerHTML = b + shopb;
+            document.getElementById("addup").innerHTML = addtxt + addup;
+        }
+        function shopcadd(i) {
+            if (stopper > 30) {
+                i.preventDefault();
+            }
+            if (number < shopb){
+            i.preventDefault;
+            }
+            stopper = stopper + 50;
+            number = number - shopc;    
+            addup = addup + addup;
+            shopc = shopc + shopaddc;
+            document.getElementById("number").innerHTML = number;
+            document.getElementById("addup").innerHTML = addtxt + addup;
 
-    </div>
-</body>
-
+        }
+        function clickadd() {
+            number = number + addup;
+            document.getElementById("number").innerHTML = number;
+            if (number > 1000) {
+                document.getElementById("aone").innerHTML = aoneone;
+            }
+            if (number > 10000) {
+                document.getElementById("atwo").innerHTML = atwotwo;
+            }
+            if (number > 1000000) {
+                document.getElementById("athree").innerHTML = athreethree;
+            }    
+        }
+    </script>
+    <style>
+        #shop {
+            position: relative;
+            left: 500px;
+            bottom: 130px;
+        }
+        #ec {
+            border-radius: 15px;
+        }
+        #ecthree {
+            border-radius: 15px;
+        }
+        #dc {
+            border-radius: 15px;
+        }
+        #btt {
+            border-radius: 15px;
+        }
+    </style>
 </html>
-<script>
-    var shopadis = document.getElementById("shopa");
-    var shopbdis = document.getElementById("shopb");
-    var number = 0;
-    var addup = 1;
-    var addupaddupa = 1;
-    var addupaddupb = 3
-    var shopa = 30;
-    var shopb = 75;
-    var shopadda = 15;
-    var shopaddb = 20;
-    var spell = "Achievements";
-    var no = "";
-    var secretspell = "You're a great speller! *Click the misspelled header";
-    var b = "BUY COST ";
-    var athreethree = "Im going to be silent now, you're already in the millions! *Reach 1000000 Points";
-    var aoneone =  "Why are you sill playing? *Reach 1000 Points";
-    var atwotwo = "Are you kidding me, I would've quit this at the first 2 seconds!!! *Reach 10000 Points"
-    document.getElementById("number").innerHTML = number;
-    function speller() {
-        document.getElementById("ah").innerHTML = spell;
-        document.getElementById("afour").innerHTML = secretspell;
-    }
-    function shopaadd(e) {
-        if (number < shopa){
-        e.preventDefault;
-    }
-        number = number - shopa;
-        addup = addup + addupaddupa;
-        shopa = shopa + shopadda;
-        document.getElementById("number").innerHTML = number;
-        document.getElementById("ec").innerHTML = no;
-        document.getElementById("ec").innerHTML = b + shopa;
-    }
-    function shopbadd(a) {
-        if (number < shopb){
-        a.preventDefault;
-    }
-        number = number - shopb;
-        addup = addup + addupaddupb;
-        shopb = shopb + shopaddb;
-        document.getElementById("number").innerHTML = number;
-        document.getElementById("ecthree").innerHTML = no;
-        document.getElementById("ecthree").innerHTML = b + shopb;
-    }
-    function clickadd() {
-        if (number > 1000) {
-            document.getElementById("aone").innerHTML = aoneone;
-    }
-        if (number > 10000) {
-            document.getElementById("atwo").innerHTML = atwotwo;
-    }
-    if (number > 1000000) {
-            document.getElementById("athree").innerHTML = athreethree;
-    }
-        number = number + addup;
-        document.getElementById("number").innerHTML = number;
-    }
-
-
-    
-    
-</script>
-<style>
-    #body{
-        font-family: sans-serif;
-    }
-</style>
